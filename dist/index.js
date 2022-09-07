@@ -27115,6 +27115,7 @@ var __webpack_exports__ = {};
 const S3 = __nccwpck_require__(3256);
 const core = __nccwpck_require__(2186);
 const fs = __nccwpck_require__(7147);
+const path = __nccwpck_require__(1017);
 
 try {
     const endpoint = core.getInput('endpoint');
@@ -27131,18 +27132,12 @@ try {
         signatureVersion: 'v4',
     });
 
-    var uploadParams = { Bucket: bucket, Key: '', Body: '' };
-
-    var fileStream = fs.createReadStream(file);
-    fileStream.on('error', function (err) {
-        console.log('File Error', err);
-        core.setFailed(err);
-    });
-    uploadParams.Body = fileStream;
-    if (destination == "") {
-        var path = __nccwpck_require__(1017);
-        uploadParams.Key = path.basename(file);
-    } else { uploadParams.Key = destination; }
+    const fileContent = fs.readFileSync(file);
+    let uploadParams = {
+        Bucket: bucket,
+        Key: destination ? destination : path.basename(file),
+        Body: fileContent
+    };
 
     // call S3 to retrieve upload file to specified bucket
     s3.upload(uploadParams, function (err, data) {
