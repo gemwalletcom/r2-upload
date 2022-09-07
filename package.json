@@ -5,10 +5,14 @@
     "aws-sdk": "2.1210.0"
   },
   "name": "r2-upload",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.5",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "ncc build",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.34.0"
   },
   "keywords": [],
   "author": "",
