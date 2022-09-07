@@ -5,10 +5,10 @@
     "aws-sdk": "2.1210.0"
   },
   "name": "r2-upload",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build",
+    "build": "ncc build index.js --license licenses.txt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
